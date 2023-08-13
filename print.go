@@ -5,16 +5,16 @@ import "fmt"
 func Print(puzzle []int) string {
 	result := ""
 	result += "┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓\n"
-	for i := 1; i <= 9; i++ {
+	for i := 0; i < 9; i++ {
 		result += "┃"
-		for j := 1; j <= 9; j++ {
-			result += fmt.Sprintf(" %d ", puzzle[i*j-1])
-			if j == 3 || j == 6 {
+		for j := 0; j < 9; j++ {
+			result += fmt.Sprintf(" %d ", puzzle[i*9+j])
+			if j == 2 || j == 5 {
 				result += "┃"
 			}
 		}
 		result += "┃\n"
-		if i == 3 || i == 6 {
+		if i == 2 || i == 5 {
 			result += "┣━━━━━━━━━╋━━━━━━━━━╋━━━━━━━━━┫\n"
 		}
 	}

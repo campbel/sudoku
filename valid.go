@@ -24,7 +24,8 @@ func IsValid(puzzle []int) bool {
 	for i := 0; i < 9; i++ {
 		set := make([]int, 9)
 		for j := 0; j < 9; j++ {
-			set[j] = puzzle[i%3*3+i/3*27+j%3+j/3*9]
+			idx := (i/3)*27 + (i%3)*3 + j%3 + j/3*9
+			set[j] = puzzle[idx]
 		}
 		if !isValidSet(set) {
 			return false
