@@ -2,14 +2,14 @@ package sudoku
 
 import "math/rand"
 
-func Generate() []int {
+func Generate(prefilled int) []int {
 	puzzle := make([]int, 81)
 
-	cells := randomNums1to81(25)
+	cells := randomNums1to81(prefilled)
 	for _, cell := range cells {
 		values := getPossibleValues(puzzle, cell)
 		if len(values) == 0 {
-			return Generate()
+			return Generate(prefilled)
 		}
 		puzzle[cell] = values[rand.Int()%len(values)]
 	}

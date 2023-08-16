@@ -1,15 +1,14 @@
 package sudoku
 
-func Solve(puzzle []int) []int {
-	if !IsValid(puzzle) {
-		return nil
-	}
+func Solve(puzzle []int) [][]int {
 	// Solve via backtracking
 	return solve(puzzle)
 }
 
-func solve(puzzle []int) []int {
-	// Find the first empty cell
+func solve(in []int) [][]int {
+	var puzzle []int = make([]int, len(in))
+	copy(puzzle, in)
+
 	i := 0
 	for ; i < 81; i++ {
 		if puzzle[i] == 0 {
@@ -17,23 +16,26 @@ func solve(puzzle []int) []int {
 		}
 	}
 	if i == 81 {
-		return puzzle
+		return [][]int{puzzle}
 	}
 
 	// Find the possible values for the cell
 	possibleValues := getPossibleValues(puzzle, i)
+	if len(possibleValues) == 0 {
+		return nil
+	}
 
 	// Try each possible value
+	var solutions [][]int
 	for _, v := range possibleValues {
 		puzzle[i] = v
 		if solved := solve(puzzle); solved != nil {
-			return solved
+			solutions = append(solutions, solved...)
 		}
 	}
 
 	// No solution found
-	puzzle[i] = 0
-	return nil
+	return solutions
 }
 
 func getPossibleValues(puzzle []int, i int) []int {

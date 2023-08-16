@@ -29,7 +29,7 @@ func TestIsValid(t *testing.T) {
 			want: true,
 		},
 		{
-			name: "valid",
+			name: "invalid",
 			args: args{
 				puzzle: []int{
 					5, 2, 4, 6, 7, 8, 9, 1, 2,

@@ -1,7 +1,6 @@
 package sudoku
 
 func IsValid(puzzle []int) bool {
-
 	// Check rows
 	for i := 0; i < 9; i++ {
 		if !isValidSet(puzzle[i*9 : i*9+9]) {
